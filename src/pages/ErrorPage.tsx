@@ -1,5 +1,5 @@
 function ErrorPage() {
-    return ( <>Error!</> );
+    return ( <div className="mt-24">Error!</div> );
 }
 
 export default ErrorPage;

@@ -2,38 +2,39 @@ import React from "react";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
 
-type DefaultStyle = {
-    margin: string;
-    children:React.ReactNode;
-  };
-  
-  const ListElement: React.FC<DefaultStyle> = ({ margin, children }) => {
-    const defaultStyle: DefaultStyle = {
-      margin: margin || "5px",
-      children
-    };
-  
-    return <li style={defaultStyle}>{children}</li>;
-  };
-  
-  function Navbar() {
-    return (
-    <div className="relative top-0 bg-[#31393C] text-white">
-      <div className="flex flex-row w-screen justify-center">
-        <ul className="flex">
-          <ListElement margin="5px">
-            <Link to="/home">Home</Link>
+type ClassNameProps = {
+  className: string;
+  children: any;
+};
+
+const ListElement: React.FC<ClassNameProps> = ({ className, children }) => {
+  return <li className={className}>{children}</li>;
+};
+
+function Navbar() {
+  return (
+    <div className="fixed top-0 left-0 right-0 bg-[#0D0A09] text-white p-4 text-2xl z-10 mb-24 rounded-b-3xl">
+      <div className="flex flex-row justify-between items-center">
+        <div className="text-[#31393C] bg-[#FDCA40] p-2 rounded-md">
+          <Link to="/home" className="flex flex-row">
+            <Icon className="text-3xl" name="Token"></Icon>
+            <p className="ml-2">Futustore</p>
+          </Link>
+        </div>
+        <ul className="flex flex-row">
+          <ListElement className="m-4">
+            <Link to="/contact">
+              <Icon className="text-3xl" name="phone" />
+            </Link>
           </ListElement>
-          <ListElement margin="5px">
-            <Link to="/contact">Contact me</Link>
-          </ListElement>
-          <ListElement margin="5px">
-            <Link to="/cart"><Icon className="" name="shopping_cart"/></Link>
+          <ListElement className="m-4">
+            <Link to="/cart">
+              <Icon className="text-3xl" name="shopping_cart" />
+            </Link>
           </ListElement>
         </ul>
       </div>
-      </div>
-    );
-  }
-  
-  export default Navbar;
+    </div>
+  );
+}
+export default Navbar;

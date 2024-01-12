@@ -9,3 +9,17 @@
   'GRAD' 0,
   'opsz' 24
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scroll-animation {
+  display: flex; /* Ustawienie display na flex */
+  animation: scroll 10s linear infinite;
+}
