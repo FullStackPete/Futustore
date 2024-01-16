@@ -9,4 +9,5 @@ export type productsType = {
   export type CardProps = {
     products: productsType[];  
     prodId:number;
+    cardColors: {background:string, topColor:string,bottomColor:string};
   };
