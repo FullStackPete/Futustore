@@ -1,6 +1,6 @@
 type iconProps = {
     name:string,
-    className:string,
+    className:string|undefined,
 }
 
 function Icon({name,className}:iconProps) {        

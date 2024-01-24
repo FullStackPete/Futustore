@@ -4,8 +4,8 @@ import { CardProps } from "../models/models";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-function Card({ products, prodId, cardColors }: CardProps) {
-  
+
+function Card({ products, prodId, cardColors,text }: CardProps) {
   const newArray = products
     .filter((product) => product.id == prodId)
     .map((product) => {return [
@@ -23,25 +23,25 @@ function Card({ products, prodId, cardColors }: CardProps) {
       {products
         .filter((product) => product.id == prodId)
         .map((product) => (
-          <li key={product.id} className={`bg-[${cardColors.background}]`}>
-              <ImageGallery items={newArray[0]}  showPlayButton={false} autoPlay={true}/>
+          <li key={product.id} style={{background:cardColors.background}}>
+              <ImageGallery items={newArray[0]} showFullscreenButton={false} slideDuration={1000} showPlayButton={false} autoPlay={true}/>
             <div className="flex flex-col my-4">
               <div className="flex flex-row justify-between">
-                <div className={`border border-[${cardColors.topColor}] w-60 h-16 bg-[${cardColors.topColor}] rounded-r-xl text-black text-3xl flex items-center`}>
-                  <p className="m-2">Future is here</p>
+                <div style={{background:cardColors.topColor,border:cardColors.topColor}} className={`border h-16 rounded-r-xl text-black text-3xl flex items-center`}>
+                  <p className="m-2">{text.topText}</p>
                 </div>
                 <div className="flex items-center justify-center ml-8 text-lg p-2">
                   <Link
                     className="flex items-center hover:animate-pulse font-semibold"
-                    to="/cart"
+                    to={'/product/'+product.id}
                   >
                     Discover now <Icon className="ml-2 " name="East"></Icon>
                   </Link>
                 </div>
               </div>
-              <div className={`w-80 bg-[${cardColors.bottomColor}] text-[#E5E3E0] text-xl rounded-r-xl`}>
+              <div style={{background:cardColors.bottomColor}}className={`w-80  text-[#E5E3E0] text-xl rounded-r-xl`}>
                 <p className="m-2">
-                  Experience the world again with our futuristic AyeBeats
+                  {text.bottomText}
                 </p>
               </div>
             </div>

@@ -4,6 +4,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import Product from "./pages/Product";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/home" element={<Home/>}/>
       <Route path="/cart" element={<Cart/>}/>
       <Route path="/contact" element={<Contact/>}/>
+      <Route path={'/product/:id'} element={<Product />}/>
       <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   </Router>

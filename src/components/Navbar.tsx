@@ -1,7 +1,8 @@
 import React from "react";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import ShoppingCart from "./ShoppingCart";
 type ClassNameProps = {
   className: string;
   children: any;
@@ -12,6 +13,8 @@ const ListElement: React.FC<ClassNameProps> = ({ className, children }) => {
 };
 
 function Navbar() {
+  const [cartShown, setCartShown] = useState<boolean>(false);
+
   return (
     <div className="fixed top-0 left-0 right-0 bg-[#0D0A09] text-white p-4 text-2xl z-10 mb-24 rounded-b-3xl">
       <div className="flex flex-row justify-between items-center">
@@ -28,9 +31,15 @@ function Navbar() {
             </Link>
           </ListElement>
           <ListElement className="m-4">
-            <Link to="/cart">
+            <div
+              onClick={() => {
+                setCartShown(!cartShown);
+                console.log(cartShown);
+              }}
+            >
+              {cartShown && <ShoppingCart />}
               <Icon className="text-3xl" name="shopping_cart" />
-            </Link>
+            </div>
           </ListElement>
         </ul>
       </div>
