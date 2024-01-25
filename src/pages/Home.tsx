@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { productsType } from "../models/models";
-import Navbar from "../components/Navbar";
 import axios from "axios";
 
 function Home() {
@@ -11,7 +10,7 @@ function Home() {
   //"https://api.escuelajs.co/api/v1/products/?offset=1&limit=5&categoryId=2"
   useEffect(() => {
     axios
-      .get("https://api.escuelajs.co/api/v1/products")
+      .get("https://api.escuelajs.co/api/v1/categories/2/products")
       .then((res) => {
         setProducts(res.data);
         console.log(res.data);
@@ -23,7 +22,6 @@ function Home() {
 
   return (
     <>
-      <Navbar />
       {error && (
         <p className="mt-28 text-2xl text-red-400">Error occured: {error}</p>
       )}
@@ -39,7 +37,7 @@ function Home() {
             topColor: "#EBCCCF",
             bottomColor: "#5BB0CF",
           }}
-          prodId={49}
+          prodId={27}
           products={products}
         />
         <Card
@@ -52,7 +50,7 @@ function Home() {
             topColor: "#B6C9C0",
             bottomColor: "#0D0A09",
           }}
-          prodId={38}
+          prodId={24}
           products={products}
         />
         <Card
@@ -65,7 +63,7 @@ function Home() {
             topColor: "#FCC940",
             bottomColor: "#0D0A09",
           }}
-          prodId={44}
+          prodId={18}
           products={products}
         />
       </ul>

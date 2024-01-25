@@ -1,18 +1,21 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useContext } from "react";
 import ImageGallery from "react-image-gallery";
-import { productsType } from "../models/models";
+import { productsType, cartItemType } from "../models/models";
 import Icon from "../components/Icon";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ShoppingCartContext from "../context/ShoppingCartContext";
 
-function ProductCard() {
-
+function ProductCard({}) {
   const [itemCounter, setItemCounter] = useState<number>(1);
   const [product, setProduct] = useState<productsType>();
+  const [cartItems, setCartItems] = useContext(ShoppingCartContext);
   const [imagesArray, setImagesArray] =
     useState<{ original: string; thumbnail: string }[]>();
   const [error, setError] = useState();
-  const { id } = useParams();  
+
+  const { id } = useParams();
+
   useEffect(() => {
     axios
       .get(`https://api.escuelajs.co/api/v1/products/${id}`)
@@ -34,6 +37,28 @@ function ProductCard() {
         setError(err);
       });
   }, []);
+
+  function addToCart(id: number) {
+    const existingCartItemIndex = cartItems.findIndex(
+      (item) => (item as cartItemType).product.id === id
+    );
+
+    if (existingCartItemIndex !== -1) {
+      // If the item already exists in cartItems
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingCartItemIndex].quantity += itemCounter;
+      setCartItems(updatedCartItems);
+    } else {
+      // If the item does not exist in cartItems
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        { product, quantity: itemCounter },
+      ]);
+    }
+
+    console.log(cartItems);
+  }
+
   return (
     <>
       <div className="mt-20">
@@ -78,7 +103,8 @@ function ProductCard() {
               </button>
             </div>
             <button
-              className="border border-black rounded-md p-2 m-2 bg-white"              
+              className="border border-black rounded-md p-2 m-2 bg-white"
+              onClick={() => addToCart(product!.id)}
             >
               <Icon
                 name="shopping_cart"

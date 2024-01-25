@@ -5,7 +5,10 @@ export type productsType = {
   description: string;
   images: string[];
 };
-
+export type cartItemType = {
+  product: productsType;
+  quantity: number;
+};
 export type CardProps = {
   products: productsType[];
   prodId: number;
