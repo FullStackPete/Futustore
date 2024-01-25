@@ -5,14 +5,16 @@ import Icon from "../components/Icon";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ShoppingCartContext from "../context/ShoppingCartContext";
+import Loader from "./Loader";
 
-function ProductCard({}) {
+function ProductCard() {
   const [itemCounter, setItemCounter] = useState<number>(1);
   const [product, setProduct] = useState<productsType>();
   const [cartItems, setCartItems] = useContext(ShoppingCartContext);
   const [imagesArray, setImagesArray] =
     useState<{ original: string; thumbnail: string }[]>();
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
 
@@ -35,6 +37,9 @@ function ProductCard({}) {
       })
       .catch((err) => {
         setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -59,6 +64,8 @@ function ProductCard({}) {
     console.log(cartItems);
   }
 
+  if (error) return <p className="mt-28">A network error occured!</p>;
+  if (loading) return <Loader />;
   return (
     <>
       <div className="mt-20">
@@ -92,6 +99,7 @@ function ProductCard({}) {
               <input
                 className=" border-black h-8 w-12 border-x text-center"
                 value={itemCounter}
+                onChange={(e) => e.preventDefault}
               />
               <button
                 className="px-2"

@@ -10,12 +10,20 @@ export type cartItemType = {
   quantity: number;
 };
 export type CardProps = {
-  products: productsType[];
+  products: apiData;
   prodId: number;
   cardColors: { background: string; topColor: string; bottomColor: string };
-  text: { topText: string|undefined; bottomText: string|undefined };
+  text: { topText: string | undefined; bottomText: string | undefined };
 };
 
 export type ProductProps = {
-  id:string|undefined;
-}
+  id: string | undefined;
+};
+
+export type apiData = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  images: string[];
+}[] | null;

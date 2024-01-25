@@ -22,13 +22,13 @@ function Navbar({ children }: navbarTypes) {
           <div className="text-[#31393C] bg-[#FDCA40] p-2 rounded-md">
             <Link to="/home" className="flex flex-row">
               <Icon className="text-3xl" name="Token"></Icon>
-              <p className="ml-2">Futustore</p>
+              <p className="ml-2 font-semibold">Futustore</p>
             </Link>
           </div>
           <ul className="flex flex-row">
             <ListElement className="m-4">
-              <Link to="/contact">
-                <Icon className="text-3xl" name="phone" />
+              <Link to="/allproducts">
+                <Icon className="text-3xl" name="apps" />
               </Link>
             </ListElement>
             <ListElement className="m-4">

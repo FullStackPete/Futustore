@@ -6,6 +6,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 
 function Card({ products, prodId, cardColors,text }: CardProps) {
+  if(products===null) return;
   const newArray = products
     .filter((product) => product.id == prodId)
     .map((product) => {return [
@@ -28,19 +29,19 @@ function Card({ products, prodId, cardColors,text }: CardProps) {
             <div className="flex flex-col my-4">
               <div className="flex flex-row justify-between">
                 <div style={{background:cardColors.topColor,border:cardColors.topColor}} className={`border h-16 rounded-r-xl text-black text-3xl flex items-center`}>
-                  <p className="m-2">{text.topText}</p>
+                  <p className="m-2 font-semibold text-2xl">{text.topText}</p>
                 </div>
                 <div className="flex items-center justify-center ml-8 text-lg p-2">
                   <Link
-                    className="flex items-center hover:animate-pulse font-semibold"
+                    className="flex items-center hover:animate-pulse font-semibold text-base"
                     to={'/product/'+product.id}
                   >
-                    Discover now <Icon className="ml-2 " name="East"></Icon>
+                    Discover now <Icon className="ml-2 text-xl" name="East"></Icon>
                   </Link>
                 </div>
               </div>
               <div style={{background:cardColors.bottomColor}}className={`w-80  text-[#E5E3E0] text-xl rounded-r-xl`}>
-                <p className="m-2">
+                <p className="m-2 text-xl">
                   {text.bottomText}
                 </p>
               </div>
