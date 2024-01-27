@@ -13,5 +13,4 @@ function AllProductsCard({ item }: { item: productsType }) {
     </>
   );
 }
-
 export default AllProductsCard;
