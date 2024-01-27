@@ -6,11 +6,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ShoppingCartContext from "../context/ShoppingCartContext";
 import Loader from "./Loader";
+import QuantityInput from "./QuantityInput";
+import { CartContextValue } from "../context/ShoppingCartProvider";
 
 function ProductCard() {
   const [itemCounter, setItemCounter] = useState<number>(1);
   const [product, setProduct] = useState<productsType>();
-  const [cartItems, setCartItems] = useContext(ShoppingCartContext);
+  const [cartItems, setCartItems] = useContext<CartContextValue | undefined>(
+    ShoppingCartContext
+  )!;
   const [imagesArray, setImagesArray] =
     useState<{ original: string; thumbnail: string }[]>();
   const [error, setError] = useState();
@@ -45,13 +49,24 @@ function ProductCard() {
 
   function addToCart(id: number) {
     const existingCartItemIndex = cartItems.findIndex(
-      (item) => (item as cartItemType).product.id === id
+      (item) => (item as cartItemType).product?.id === id
     );
 
     if (existingCartItemIndex !== -1) {
       // If the item already exists in cartItems
       const updatedCartItems = [...cartItems];
-      updatedCartItems[existingCartItemIndex].quantity += itemCounter;
+      if (
+        updatedCartItems[existingCartItemIndex].quantity + itemCounter >=
+        10
+      ) {
+        (updatedCartItems[existingCartItemIndex] as cartItemType).quantity = 10;
+      } else if (
+        updatedCartItems[existingCartItemIndex].quantity + itemCounter <
+        10
+      ) {
+        (updatedCartItems[existingCartItemIndex] as cartItemType).quantity +=
+          itemCounter;
+      }
       setCartItems(updatedCartItems);
     } else {
       // If the item does not exist in cartItems
@@ -60,7 +75,6 @@ function ProductCard() {
         { product, quantity: itemCounter },
       ]);
     }
-
     console.log(cartItems);
   }
 
@@ -86,29 +100,17 @@ function ProductCard() {
           <div id="cart" className="flex items-center">
             Add to cart
             <div className="flex flex-row border border-black rounded-md ml-2 bg-white">
-              <button
-                onClick={() => {
+              <QuantityInput
+                decreaseNumber={() => {
                   if (itemCounter > 1) {
                     setItemCounter((prev) => prev - 1);
                   }
                 }}
-                className="px-2"
-              >
-                -
-              </button>
-              <input
-                className=" border-black h-8 w-12 border-x text-center"
-                value={itemCounter}
-                onChange={(e) => e.preventDefault}
-              />
-              <button
-                className="px-2"
-                onClick={() => {
-                  setItemCounter((prev) => prev + 1);
+                inputValue={itemCounter}
+                increaseNumber={() => {
+                  if (itemCounter < 10) setItemCounter((prev) => prev + 1);
                 }}
-              >
-                +
-              </button>
+              />
             </div>
             <button
               className="border border-black rounded-md p-2 m-2 bg-white"

@@ -29,7 +29,7 @@ function Home() {
             topColor: "#EBCCCF",
             bottomColor: "#5BB0CF",
           }}
-          prodId={25}
+          prodId={27}
           products={data}
         />
         <Card
@@ -42,7 +42,7 @@ function Home() {
             topColor: "#B6C9C0",
             bottomColor: "#0D0A09",
           }}
-          prodId={24}
+          prodId={19}
           products={data}
         />
         <Card
@@ -55,7 +55,7 @@ function Home() {
             topColor: "#FCC940",
             bottomColor: "#0D0A09",
           }}
-          prodId={22}
+          prodId={24}
           products={data}
         />
       </ul>

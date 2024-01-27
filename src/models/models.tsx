@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type productsType = {
   id: number;
   title: string;
@@ -6,7 +8,7 @@ export type productsType = {
   images: string[];
 };
 export type cartItemType = {
-  product: productsType;
+  product?: productsType;
   quantity: number;
 };
 export type CardProps = {
@@ -20,10 +22,17 @@ export type ProductProps = {
   id: string | undefined;
 };
 
-export type apiData = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  images: string[];
-}[] | null;
+export type CartProviderTypes = {
+  children: ReactNode;
+};
+
+export type apiData = productsType[] | null;
+
+export type quantityInputTypes = {
+  decreaseNumber: () => void;
+  increaseNumber: () => void;
+  inputValue: number;
+  id?: string;
+  customClass?: string;
+  onChange?: () => void;
+};

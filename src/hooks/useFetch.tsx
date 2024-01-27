@@ -15,6 +15,7 @@ function useFetch(url:string) {
                 throw new Error("server error");
             }
             setData(res.data);
+            console.log(res.data);
         })
         .catch((err)=>{
             setError(err.message);

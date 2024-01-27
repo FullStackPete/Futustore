@@ -1,7 +1,6 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
+import { CartContextValue } from "./ShoppingCartProvider";
 
-type CartContextValue = [object[], Dispatch<SetStateAction<object[]>>];
-
-const ShoppingCartContext = createContext<CartContextValue>([[], () => {}]);
+const ShoppingCartContext = createContext<CartContextValue|undefined>([[], () => {}]);
 
 export default ShoppingCartContext;

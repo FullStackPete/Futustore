@@ -1,17 +1,15 @@
-import { useState, useMemo, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
-
+import { useState, useMemo, useEffect, Dispatch, SetStateAction } from 'react';
+import { CartProviderTypes,cartItemType } from '../models/models';
 import ShoppingCartContext from './ShoppingCartContext';
 
-type CartProviderTypes = {
-  children: ReactNode;
-};
 
-export type CartContextValue = [object[], Dispatch<SetStateAction<object[]>>];
+
+export type CartContextValue = [cartItemType[], Dispatch<SetStateAction<cartItemType[]>>];
 
 function CartProvider({ children }: CartProviderTypes) {
   const storedCartString = localStorage.getItem('esCart');
   const initialCart = storedCartString ? JSON.parse(storedCartString) : [];
-  const [cart, setCart] = useState<object[]>(initialCart);
+  const [cart, setCart] = useState<cartItemType[]>(initialCart);
 
   const value: CartContextValue = useMemo(() => [cart, setCart], [cart]);
 
