@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
 
+
+
+export type CartHeaderTypes = {
+  text:string
+}
 export type productsType = {
   id: number;
   title: string;
@@ -36,3 +41,16 @@ export type quantityInputTypes = {
   customClass?: string;
   onChange?: () => void;
 };
+
+export type AddressInputProps = {
+  type:string, 
+  inputName:string,
+  placeholder:string,
+  maxLength?:number,
+}
+
+export type ContinueButtonType = {
+  LinkTo:string,
+  text:string,
+  type?: 'button'|'reset'|'submit',
+}

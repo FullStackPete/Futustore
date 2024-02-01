@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import ContinueButton from "../../components/CartComponents/ContinueButton";
 import ShoppingCartContext from "../../context/ShoppingCartContext";
 import { CartContextValue } from "../../context/ShoppingCartProvider";
 import Icon from "../../components/Icon";
@@ -125,11 +126,7 @@ function Cart() {
               </div>
             </div>
             <div className="flex justify-end">
-              <Link to="/cart/address">
-                <button className="flex m-4 p-2 border bg-[#B6C9C0] rounded-md font-semibold">
-                  Continue
-                </button>
-              </Link>
+                <ContinueButton LinkTo="/cart/address" text="Continue"/>
             </div>
           </>
         )}

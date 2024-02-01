@@ -24,3 +24,10 @@
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
 }
+
+input[type="email"]:not(:placeholder-shown) ~ .input-text,
+input[type="tel"]:not(:placeholder-shown) ~ .input-text,
+input[type="zip"]:not(:placeholder-shown) ~ .input-text,
+input[type="text"]:not(:placeholder-shown) ~ .input-text{
+  @apply bg-white transform -translate-y-5 -translate-x-3 scale-75;
+}
