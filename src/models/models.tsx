@@ -47,6 +47,8 @@ export type AddressInputProps = {
   inputName:string,
   placeholder:string,
   maxLength?:number,
+  minLength?:number,
+  inputType:"string"|"number"
 }
 
 export type ContinueButtonType = {
@@ -54,3 +56,4 @@ export type ContinueButtonType = {
   text:string,
   type?: 'button'|'reset'|'submit',
 }
+export type validationStatus = "Ok" |"Only numbers!" | ""

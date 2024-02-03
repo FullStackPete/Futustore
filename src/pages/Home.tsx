@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
 function Home() {
   const { data, error, loading } = useFetch(
-    "https://api.escuelajs.co/api/v1/categories/2/products"
+    "https://api.escuelajs.co/api/v1/categories/1/products"
   );
 
   if (error) return <p>A network error was encountered!</p>;
@@ -29,7 +29,7 @@ function Home() {
             topColor: "#EBCCCF",
             bottomColor: "#5BB0CF",
           }}
-          prodId={27}
+          prodId={64}
           products={data}
         />
         <Card
@@ -42,7 +42,7 @@ function Home() {
             topColor: "#B6C9C0",
             bottomColor: "#0D0A09",
           }}
-          prodId={19}
+          prodId={65}
           products={data}
         />
         <Card
@@ -55,7 +55,7 @@ function Home() {
             topColor: "#FCC940",
             bottomColor: "#0D0A09",
           }}
-          prodId={24}
+          prodId={66}
           products={data}
         />
       </ul>
