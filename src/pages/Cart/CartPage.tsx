@@ -5,11 +5,12 @@ import { CartContextValue } from "../../context/ShoppingCartProvider";
 import Icon from "../../components/Icon";
 import { cartItemType } from "../../models/models";
 import QuantityInput from "../../components/QuantityInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Cart() {
   const [cart, setCart] = useContext<CartContextValue | undefined>(
     ShoppingCartContext
   )!;
+  const navigate = useNavigate();
   function deleteItemFromCart(id: number) {
     const updatedCart = (cart as cartItemType[]).filter(
       (item) => item.product?.id !== id
@@ -18,6 +19,8 @@ function Cart() {
     console.log(cart);
   }
   let finalPrice: number = 0;
+
+  const navigateAddress = () => navigate("/cart/address");
 
   function updateQuantity(id: number, action?: string) {
     const errorOutput = document.getElementById("errorTxt" + id);
@@ -126,7 +129,7 @@ function Cart() {
               </div>
             </div>
             <div className="flex justify-end">
-                <ContinueButton LinkTo="/cart/address" text="Continue"/>
+              <ContinueButton onClick={navigateAddress} text="Continue" />
             </div>
           </>
         )}

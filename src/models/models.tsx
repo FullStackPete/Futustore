@@ -1,10 +1,8 @@
 import { ReactNode } from "react";
 
-
-
 export type CartHeaderTypes = {
-  text:string
-}
+  text: string;
+};
 export type productsType = {
   id: number;
   title: string;
@@ -43,17 +41,26 @@ export type quantityInputTypes = {
 };
 
 export type AddressInputProps = {
-  type:string, 
-  inputName:string,
-  placeholder:string,
-  maxLength?:number,
-  minLength?:number,
-  inputType:"string"|"number"
-}
+  type: string;
+  inputName: string;
+  placeholder: string;
+  maxLength?: number;
+  minLength?: number;
+  inputType: "string" | "number" | "email";
+  setInputValidated:(arg1:boolean)=>void
+};
 
 export type ContinueButtonType = {
-  LinkTo:string,
-  text:string,
-  type?: 'button'|'reset'|'submit',
-}
-export type validationStatus = "Ok" |"Only numbers!" | ""
+  className?: string;
+  text: string;
+  type?: "button" | "reset" | "submit";
+  onClick: () => void;
+};
+export type validationStatus =
+  | "Ok"
+  | "Type only numbers!"
+  | ""
+  | "Too many spaces!"
+  | "Invalid email!"
+  | "Must be 5 characters long!"
+  | "Minimum 8 characters long!";

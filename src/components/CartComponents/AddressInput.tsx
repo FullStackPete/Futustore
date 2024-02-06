@@ -1,35 +1,77 @@
 import { AddressInputProps } from "../../models/models";
 import { useState } from "react";
 import { validationStatus } from "../../models/models";
+import validator from "validator"
+import Icon from "../Icon";
+
 function AddressInput({
   type,
   inputName,
   placeholder,
   maxLength,
   inputType,
-  minLength,
+  minLength,  
+  setInputValidated,
 }: AddressInputProps) {
   const [inputValue, setInputValue] = useState("");
   const [validation, setValidation] = useState<validationStatus>("");
 
-
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value;
+
+    // Usunięcie spacji na początku wartości
+    if (newValue.startsWith(" ")) {
+      newValue = newValue.trimStart();
+    }
+
     if (inputType === "number") {
+      newValue = newValue.trim();
       // Sprawdź, czy nowa wartość to liczba
       if (!isNaN(Number(newValue))) {
-        //jesli nie jest nie-cyfrą - czyli jeśli jest cyfrą XD
+        if (inputName === "Postal" && newValue.length < maxLength!) {
+          setValidation("Must be 5 characters long!");
+          setInputValidated(false);
+          return setInputValue(newValue);
+        } else if (inputName === "Phone" && newValue.length < minLength!) {
+          setValidation("Minimum 8 characters long!");
+          setInputValidated(false);
+          return setInputValue(newValue);
+        }
         setInputValue(newValue);
         setValidation("Ok");
+        setInputValidated(true);
       } else {
-        setValidation("Only numbers!");
+        setValidation("Type only numbers!");
+        setInputValidated(false);
       }
+    } else if (inputType === "email") {
+      // Obsługa spacji tylko dla pola email
+      newValue = newValue.replace(/^\s+/, "");
+      setInputValue(newValue);
+      if(validator.isEmail(newValue)){
+        setValidation("Ok");
+        setInputValidated(true);
+      } else{
+        setValidation("Invalid email!");
+        setInputValidated(false);
+      }
+
     } else if (inputType === "string") {
+      // Usunięcie nadmiarowych spacji
+      newValue = newValue.replace(/\s+/g, " ");
+
       setInputValue(newValue);
       setValidation("Ok");
+      setInputValidated(true);
     }
-    if (newValue == "") return setValidation("");
+
+    // Ustawienie walidacji na puste, jeśli wartość jest pusta po usunięciu spacji
+    if (newValue === "") {
+      setInputValidated(false);
+      return setValidation("");
+    }
   };
+
   return (
     <>
       <label className="relative">
@@ -56,10 +98,14 @@ function AddressInput({
         </span>
         {validation && (
           <span
-            className={`validation absolute right-6 top-6 ml-4 bg-white transition duration-500 
+            className={`validation absolute right-6 top-6 ml-4 bg-white transition duration-200 
           ${validation == "Ok" ? "validation-ok" : "validation-wrong"}`}
           >
-            {validation}
+            {validation == "Ok" ? (
+              <Icon className="" name="check" />
+            ) : (
+              validation
+            )}
           </span>
         )}
       </label>

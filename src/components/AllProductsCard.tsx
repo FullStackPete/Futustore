@@ -7,7 +7,7 @@ function AllProductsCard({ item }: { item: productsType }) {
         <Link to={`/product/${item.id}`}>
         <img src={item.images[0]} alt={item.title} />
         <p className="text-sm font-medium">{item.title}</p>
-        <p className="text-red-400 font-medium">{item.price}$,-</p>
+        <p className="text-gray-400 font-base">{item.price}$,-</p>
         </Link>
       </div>
     </>
