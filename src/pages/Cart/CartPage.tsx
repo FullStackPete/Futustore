@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import ContinueButton from "../../components/CartComponents/ContinueButton";
-import ShoppingCartContext from "../../context/ShoppingCartContext";
+import {ShoppingCartContext} from "../../context/Contexts";
 import { CartContextValue } from "../../context/ShoppingCartProvider";
 import Icon from "../../components/Icon";
 import { cartItemType } from "../../models/models";
@@ -70,7 +70,7 @@ function Cart() {
           )}
         </p>
         {cart && (
-          <ul className=" flex flex-col m-4">
+          <ul className=" flex flex-col mx-4">
             {(cart as cartItemType[]).map((item, index) => {
               return (
                 <li key={index} className="border-y flex flex-row my-2">
@@ -120,7 +120,7 @@ function Cart() {
 
         {cart.length > 0 && (
           <>
-            <div className="flex justify-end mr-4">
+            <div className="flex justify-end m-4">
               <div className="flex flex-col">
                 <p className="font-medium text-lg">
                   Summary: {(finalPrice += 5.39)}$,-
@@ -128,7 +128,7 @@ function Cart() {
                 <p className="text-gray-400">5.39$ shipping included</p>
               </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end mb-4">
               <ContinueButton onClick={navigateAddress} text="Continue" />
             </div>
           </>

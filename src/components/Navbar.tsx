@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
-import ShoppingCartContext from "../context/ShoppingCartContext";
+import {ShoppingCartContext} from "../context/Contexts";
 import { CartContextValue } from "../context/ShoppingCartProvider";
 import { cartItemType } from "../models/models";
 type ClassNameProps = {

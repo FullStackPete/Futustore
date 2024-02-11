@@ -14,27 +14,29 @@ import CartProvider from "./context/ShoppingCartProvider";
 import AllProducts from "./pages/AllProductsPage";
 import AddressPage from "./pages/Cart/AddressPage";
 import Summary from "./pages/Cart/Summary";
-
+import UserAddressProvider from "./context/UserAddressProvider";
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <Navbar>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<Home />} />
+      <UserAddressProvider>
+        <CartProvider>
+          <Navbar>
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<Home />} />
 
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/cart/address" element={<AddressPage />} />
-            <Route path="/cart/summary" element={<Summary />} />
-            
-            <Route path="/allproducts" element={<AllProducts />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path={"/product/:id"} element={<Product />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </Navbar>
-      </CartProvider>
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart/address" element={<AddressPage />} />
+              <Route path="/cart/summary" element={<Summary />} />
+
+              <Route path="/allproducts" element={<AllProducts />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path={"/product/:id"} element={<Product />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </Navbar>
+        </CartProvider>
+      </UserAddressProvider>
     </Router>
   );
 }

@@ -4,7 +4,7 @@ import { productsType, cartItemType } from "../models/models";
 import Icon from "../components/Icon";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ShoppingCartContext from "../context/ShoppingCartContext";
+import {ShoppingCartContext} from "../context/Contexts";
 import Loader from "./Loader";
 import QuantityInput from "./QuantityInput";
 import { CartContextValue } from "../context/ShoppingCartProvider";

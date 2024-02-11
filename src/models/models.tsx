@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export type CartHeaderTypes = {
   text: string;
@@ -25,7 +25,7 @@ export type ProductProps = {
   id: string | undefined;
 };
 
-export type CartProviderTypes = {
+export type ChildrenType = {
   children: ReactNode;
 };
 
@@ -47,14 +47,15 @@ export type AddressInputProps = {
   maxLength?: number;
   minLength?: number;
   inputType: "string" | "number" | "email";
-  setInputValidated:(arg1:boolean)=>void
+  setInputValidated: (arg1: boolean) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type ContinueButtonType = {
   className?: string;
   text: string;
   type?: "button" | "reset" | "submit";
-  onClick: () => void;
+  onClick?: () => void;
 };
 export type validationStatus =
   | "Ok"
@@ -64,3 +65,17 @@ export type validationStatus =
   | "Invalid email!"
   | "Must be 5 characters long!"
   | "Minimum 8 characters long!";
+
+export type AddressType = {
+  Name: string;
+  Address: string;
+  Postal: string;
+  City: string;
+  Phone: string;
+  Email: string;
+};
+
+export type CartSectionType = {
+  children: React.ReactNode;
+  customClass?: string;
+};

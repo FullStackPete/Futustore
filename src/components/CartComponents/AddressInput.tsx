@@ -10,13 +10,15 @@ function AddressInput({
   placeholder,
   maxLength,
   inputType,
-  minLength,  
+  minLength,
+  onChange,  
   setInputValidated,
 }: AddressInputProps) {
   const [inputValue, setInputValue] = useState("");
   const [validation, setValidation] = useState<validationStatus>("");
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {    
     let newValue = e.target.value;
 
     // Usunięcie spacji na początku wartości
@@ -40,6 +42,7 @@ function AddressInput({
         setInputValue(newValue);
         setValidation("Ok");
         setInputValidated(true);
+        onChange(e);
       } else {
         setValidation("Type only numbers!");
         setInputValidated(false);
@@ -51,6 +54,7 @@ function AddressInput({
       if(validator.isEmail(newValue)){
         setValidation("Ok");
         setInputValidated(true);
+        onChange(e);
       } else{
         setValidation("Invalid email!");
         setInputValidated(false);
@@ -63,6 +67,7 @@ function AddressInput({
       setInputValue(newValue);
       setValidation("Ok");
       setInputValidated(true);
+      onChange(e);
     }
 
     // Ustawienie walidacji na puste, jeśli wartość jest pusta po usunięciu spacji

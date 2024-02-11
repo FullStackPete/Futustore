@@ -3,8 +3,16 @@ import AddressInput from "../../components/CartComponents/AddressInput";
 import ContinueButton from "../../components/CartComponents/ContinueButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { useUserAddress } from "../../context/UserAddressProvider";
 function AddressPage() {
+  const [addressInputs, setAddressInputs] = useState({
+    Name: "",
+    Address: "",
+    Postal: "",
+    City: "",
+    Phone: "",
+    Email: "",
+  });
   const [validateInputs, setValidateInputs] = useState({
     Name: false,
     Address: false,
@@ -14,18 +22,32 @@ function AddressPage() {
     Email: false,
   });
   const navigate = useNavigate();
+  const [userAddresses, addUserAddress] = useUserAddress();
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setAddressInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
+  };
+
   const btnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  };
-  const navigateSummary = () => {
     if (Object.values(validateInputs).every((isValid) => isValid)) {
+      const newAddress = {
+        Name: addressInputs.Name,
+        Address: addressInputs.Address,
+        Postal: addressInputs.Postal,
+        City: addressInputs.City,
+        Phone: addressInputs.Phone,
+        Email: addressInputs.Email,
+      };
+      addUserAddress(newAddress);
+      console.log("userAddresses:",userAddresses);
+      console.log("New Address:",newAddress);
       navigate("/cart/summary");
     } else {
       console.log("Niepoprawne dane w formularzu. ", validateInputs);
     }
   };
-  
-
   return (
     <>
       <CartHeader text="Enter your address" />
@@ -41,8 +63,10 @@ function AddressPage() {
           placeholder="Fullname"
           inputName="Name"
           type="text"
+          onChange={handleValueChange}
         />
         <AddressInput
+          onChange={handleValueChange}
           setInputValidated={(isValid) =>
             setValidateInputs({ ...validateInputs, Address: isValid })
           }
@@ -52,6 +76,7 @@ function AddressPage() {
           type="text"
         />
         <AddressInput
+          onChange={handleValueChange}
           setInputValidated={(isValid) =>
             setValidateInputs({ ...validateInputs, Postal: isValid })
           }
@@ -62,6 +87,7 @@ function AddressPage() {
           maxLength={5}
         />
         <AddressInput
+          onChange={handleValueChange}
           setInputValidated={(isValid) =>
             setValidateInputs({ ...validateInputs, City: isValid })
           }
@@ -71,6 +97,7 @@ function AddressPage() {
           type="text"
         />
         <AddressInput
+          onChange={handleValueChange}
           setInputValidated={(isValid) =>
             setValidateInputs({ ...validateInputs, Phone: isValid })
           }
@@ -82,6 +109,7 @@ function AddressPage() {
           type="tel"
         />
         <AddressInput
+          onChange={handleValueChange}
           setInputValidated={(isValid) =>
             setValidateInputs({ ...validateInputs, Email: isValid })
           }
@@ -90,12 +118,7 @@ function AddressPage() {
           inputName="Email"
           type="text"
         />
-        <ContinueButton
-          onClick={navigateSummary}
-          className=" "
-          type="submit"
-          text="Submit"
-        />
+        <ContinueButton className=" " type="submit" text="Submit" />
       </form>
     </>
   );
