@@ -4,15 +4,10 @@ import ContinueButton from "../../components/CartComponents/ContinueButton";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useUserAddress } from "../../context/UserAddressProvider";
+import { AddressType } from "../../models/models";
 function AddressPage() {
-  const [addressInputs, setAddressInputs] = useState({
-    Name: "",
-    Address: "",
-    Postal: "",
-    City: "",
-    Phone: "",
-    Email: "",
-  });
+  const [userAddress, addUserAddress] = useUserAddress();
+  console.log("Input validation set to false");
   const [validateInputs, setValidateInputs] = useState({
     Name: false,
     Address: false,
@@ -20,12 +15,22 @@ function AddressPage() {
     City: false,
     Phone: false,
     Email: false,
+  });console.log("Input validation set to false2");
+  const [addressInputs, setAddressInputs] = useState<AddressType>({
+    Name: "",
+    Address: "",
+    Postal: "",
+    City: "",
+    Phone: "",
+    Email: "",
   });
-  const navigate = useNavigate();
-  const [userAddresses, addUserAddress] = useUserAddress();
 
+  const navigate = useNavigate();
+
+  console.log(userAddress);
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log("Value changed: ", { name, value });
     setAddressInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
   };
 
@@ -41,8 +46,7 @@ function AddressPage() {
         Email: addressInputs.Email,
       };
       addUserAddress(newAddress);
-      console.log("userAddresses:",userAddresses);
-      console.log("New Address:",newAddress);
+      console.log("New Address:", newAddress);
       navigate("/cart/summary");
     } else {
       console.log("Niepoprawne dane w formularzu. ", validateInputs);
@@ -57,7 +61,7 @@ function AddressPage() {
       >
         <AddressInput
           setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, Name: isValid })
+            setValidateInputs((prev)=>({ ...prev, Name: isValid }))            
           }
           inputType="string"
           placeholder="Fullname"

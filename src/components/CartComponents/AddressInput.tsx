@@ -1,7 +1,8 @@
-import { AddressInputProps } from "../../models/models";
-import { useState } from "react";
+import { AddressInputProps, AddressType } from "../../models/models";
+import { useState, useEffect } from "react";
 import { validationStatus } from "../../models/models";
-import validator from "validator"
+import { useUserAddress } from "../../context/UserAddressProvider";
+import validator from "validator";
 import Icon from "../Icon";
 
 function AddressInput({
@@ -11,16 +12,18 @@ function AddressInput({
   maxLength,
   inputType,
   minLength,
-  onChange,  
+  onChange,
   setInputValidated,
 }: AddressInputProps) {
-  const [inputValue, setInputValue] = useState("");
+  const [userAddress, _] = useUserAddress();
+  const initialInput = userAddress![inputName as keyof AddressType];
+  const [inputValue, setInputValue] = useState(initialInput);
   const [validation, setValidation] = useState<validationStatus>("");
 
-  
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {    
-    let newValue = e.target.value;
-
+  const validate = (
+    newValue: string,
+    e?: React.ChangeEvent<HTMLInputElement>
+  ) => {
     // Usunięcie spacji na początku wartości
     if (newValue.startsWith(" ")) {
       newValue = newValue.trimStart();
@@ -42,7 +45,8 @@ function AddressInput({
         setInputValue(newValue);
         setValidation("Ok");
         setInputValidated(true);
-        onChange(e);
+        console.log("inputValidated set to true")
+        if (e) onChange(e);
       } else {
         setValidation("Type only numbers!");
         setInputValidated(false);
@@ -51,15 +55,14 @@ function AddressInput({
       // Obsługa spacji tylko dla pola email
       newValue = newValue.replace(/^\s+/, "");
       setInputValue(newValue);
-      if(validator.isEmail(newValue)){
+      if (validator.isEmail(newValue)) {
         setValidation("Ok");
         setInputValidated(true);
-        onChange(e);
-      } else{
+        if (e) onChange(e);
+      } else {
         setValidation("Invalid email!");
         setInputValidated(false);
       }
-
     } else if (inputType === "string") {
       // Usunięcie nadmiarowych spacji
       newValue = newValue.replace(/\s+/g, " ");
@@ -67,7 +70,7 @@ function AddressInput({
       setInputValue(newValue);
       setValidation("Ok");
       setInputValidated(true);
-      onChange(e);
+      if (e) onChange(e);
     }
 
     // Ustawienie walidacji na puste, jeśli wartość jest pusta po usunięciu spacji
@@ -75,6 +78,13 @@ function AddressInput({
       setInputValidated(false);
       return setValidation("");
     }
+  };
+  useEffect(() => {
+    validate(initialInput);
+  }, []);
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newValue = e.target.value;
+    validate(newValue, e);
   };
 
   return (

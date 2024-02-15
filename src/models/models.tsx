@@ -79,3 +79,8 @@ export type CartSectionType = {
   children: React.ReactNode;
   customClass?: string;
 };
+
+export type PriceSummaryProps = {
+  handleBtnClick: () => void;
+  btnText: string;
+};
