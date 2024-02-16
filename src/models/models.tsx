@@ -84,3 +84,40 @@ export type PriceSummaryProps = {
   handleBtnClick: () => void;
   btnText: string;
 };
+
+export type addressInputsModelType = {
+  name: string;
+  placeholder: string;
+  inputType: "string" | "number" | "email";
+  type: "text" | "tel" | "zip";
+  minLength?: number;
+  maxLength?: number;
+};
+
+
+export const addressInputsModel: addressInputsModelType[] = [
+  { name: "Name", placeholder: "Fullname", inputType: "string", type: "text" },
+  {
+    name: "Address",
+    placeholder: "Address",
+    inputType: "string",
+    type: "text",
+  },
+  {
+    name: "Postal",
+    placeholder: "Zip code",
+    inputType: "number",
+    type: "zip",
+    maxLength: 5,
+  },
+  { name: "City", placeholder: "City", inputType: "string", type: "text" },
+  {
+    name: "Phone",
+    placeholder: "Phone",
+    inputType: "number",
+    type: "tel",
+    minLength: 8,
+    maxLength: 11,
+  },
+  { name: "Email", placeholder: "Email", inputType: "email", type: "text" },
+];

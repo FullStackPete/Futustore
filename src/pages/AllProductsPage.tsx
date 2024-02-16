@@ -4,7 +4,7 @@ import AllProductsCard from "../components/AllProductsCard";
 
 function AllProducts() {
   const { data, error, loading } = useFetch(
-    "https://api.escuelajs.co/api/v1/categories/2/products?offset=0&limit=10"
+    "https://api.escuelajs.co/api/v1/products"
   );
 
   if (error) return <p className="mt-96">A network error occurred!</p>;

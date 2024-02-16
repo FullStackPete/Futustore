@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useUserAddress } from "../../context/UserAddressProvider";
 import { AddressType } from "../../models/models";
+import { addressInputsModel } from "../../models/models";
+
 function AddressPage() {
   const [userAddress, addUserAddress] = useUserAddress();
   console.log("Input validation set to false");
@@ -15,7 +17,8 @@ function AddressPage() {
     City: false,
     Phone: false,
     Email: false,
-  });console.log("Input validation set to false2");
+  });
+  console.log("Input validation set to false2");
   const [addressInputs, setAddressInputs] = useState<AddressType>({
     Name: "",
     Address: "",
@@ -59,69 +62,24 @@ function AddressPage() {
         onSubmit={(e) => btnSubmit(e)}
         className="flex flex-col justify-center items-center my-2 "
       >
-        <AddressInput
-          setInputValidated={(isValid) =>
-            setValidateInputs((prev)=>({ ...prev, Name: isValid }))            
-          }
-          inputType="string"
-          placeholder="Fullname"
-          inputName="Name"
-          type="text"
-          onChange={handleValueChange}
-        />
-        <AddressInput
-          onChange={handleValueChange}
-          setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, Address: isValid })
-          }
-          inputType="string"
-          placeholder="Address"
-          inputName="Address"
-          type="text"
-        />
-        <AddressInput
-          onChange={handleValueChange}
-          setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, Postal: isValid })
-          }
-          inputType="number"
-          placeholder="Zip code"
-          inputName="Postal"
-          type="zip"
-          maxLength={5}
-        />
-        <AddressInput
-          onChange={handleValueChange}
-          setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, City: isValid })
-          }
-          inputType="string"
-          placeholder="City"
-          inputName="City"
-          type="text"
-        />
-        <AddressInput
-          onChange={handleValueChange}
-          setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, Phone: isValid })
-          }
-          inputType="number"
-          minLength={8}
-          maxLength={11}
-          placeholder="Phone"
-          inputName="Phone"
-          type="tel"
-        />
-        <AddressInput
-          onChange={handleValueChange}
-          setInputValidated={(isValid) =>
-            setValidateInputs({ ...validateInputs, Email: isValid })
-          }
-          inputType="email"
-          placeholder="Email"
-          inputName="Email"
-          type="text"
-        />
+        {addressInputsModel.map((input, index) => (
+          <AddressInput
+            key={index}
+            type={input.type}
+            inputName={input.name}
+            placeholder={input.placeholder}
+            inputType={input.inputType}
+            minLength={input.minLength}
+            maxLength={input.maxLength}
+            onChange={handleValueChange}
+            setInputValidated={(isValid) =>
+              setValidateInputs((prev) => ({
+                ...prev,
+                [input.name as keyof typeof prev]: isValid,
+              }))
+            }
+          />
+        ))}
         <ContinueButton className=" " type="submit" text="Submit" />
       </form>
     </>

@@ -16,7 +16,12 @@ function AddressInput({
   setInputValidated,
 }: AddressInputProps) {
   const [userAddress, _] = useUserAddress();
-  const initialInput = userAddress![inputName as keyof AddressType];
+  let initialInput:string;
+  if (userAddress) {
+  initialInput = userAddress[inputName as keyof AddressType];
+  } else {
+   initialInput = "";
+  }
   const [inputValue, setInputValue] = useState(initialInput);
   const [validation, setValidation] = useState<validationStatus>("");
 
@@ -45,7 +50,7 @@ function AddressInput({
         setInputValue(newValue);
         setValidation("Ok");
         setInputValidated(true);
-        console.log("inputValidated set to true")
+        console.log("inputValidated set to true");
         if (e) onChange(e);
       } else {
         setValidation("Type only numbers!");
