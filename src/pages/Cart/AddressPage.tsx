@@ -8,6 +8,7 @@ import { AddressType } from "../../models/models";
 import { addressInputsModel } from "../../models/models";
 
 function AddressPage() {
+  let userAddressInState;
   const [userAddress, addUserAddress] = useUserAddress();
   console.log("Input validation set to false");
   const [validateInputs, setValidateInputs] = useState({
@@ -19,14 +20,21 @@ function AddressPage() {
     Email: false,
   });
   console.log("Input validation set to false2");
-  const [addressInputs, setAddressInputs] = useState<AddressType>({
-    Name: "",
-    Address: "",
-    Postal: "",
-    City: "",
-    Phone: "",
-    Email: "",
-  });
+
+  if (userAddress) {
+    userAddressInState = userAddress;
+  } else {
+    userAddressInState = {
+      Name: "",
+      Address: "",
+      Postal: "",
+      City: "",
+      Phone: "",
+      Email: "",
+    };
+  }
+  const [addressInputs, setAddressInputs] =
+    useState<AddressType>(userAddressInState);
 
   const navigate = useNavigate();
 
@@ -55,6 +63,7 @@ function AddressPage() {
       console.log("Niepoprawne dane w formularzu. ", validateInputs);
     }
   };
+
   return (
     <>
       <CartHeader text="Enter your address" />

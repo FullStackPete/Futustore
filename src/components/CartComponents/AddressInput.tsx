@@ -16,19 +16,20 @@ function AddressInput({
   setInputValidated,
 }: AddressInputProps) {
   const [userAddress, _] = useUserAddress();
-  let initialInput:string;
+  const [validation, setValidation] = useState<validationStatus>("");
+  let initialInput: string;
   if (userAddress) {
-  initialInput = userAddress[inputName as keyof AddressType];
+    initialInput = userAddress[inputName as keyof AddressType];
   } else {
-   initialInput = "";
+    initialInput = "";
   }
   const [inputValue, setInputValue] = useState(initialInput);
-  const [validation, setValidation] = useState<validationStatus>("");
 
   const validate = (
     newValue: string,
     e?: React.ChangeEvent<HTMLInputElement>
   ) => {
+    setValidation("");
     // Usunięcie spacji na początku wartości
     if (newValue.startsWith(" ")) {
       newValue = newValue.trimStart();
@@ -50,7 +51,6 @@ function AddressInput({
         setInputValue(newValue);
         setValidation("Ok");
         setInputValidated(true);
-        console.log("inputValidated set to true");
         if (e) onChange(e);
       } else {
         setValidation("Type only numbers!");
@@ -84,9 +84,13 @@ function AddressInput({
       return setValidation("");
     }
   };
+
   useEffect(() => {
-    validate(initialInput);
+    if (userAddress) {
+      validate(initialInput);
+    }
   }, []);
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = e.target.value;
     validate(newValue, e);

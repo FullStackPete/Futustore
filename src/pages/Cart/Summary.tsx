@@ -3,6 +3,7 @@ import CartHeader from "../../components/CartComponents/CartHeader";
 import CartSection from "../../components/CartComponents/CartSection";
 import ItemsInCart from "../../components/CartComponents/ItemsInCart";
 import PriceSummary from "../../components/CartComponents/PriceSummary";
+import { Link } from "react-router-dom";
 function Summary() {
   const [userAddress] = useUserAddress();
 
@@ -16,7 +17,7 @@ function Summary() {
         <div className="m-4">
           <div className="flex flex-row justify-between">
             <p className="text-xl font-medium">Address</p>
-            <p>Edit (not implemented yet)</p>
+            <Link to={"/cart/address"} className="text-blue-400 underline">Edit</Link>
           </div>
           <CartSection customClass="flex-col">
             <p>{userAddress!.Name}</p>

@@ -20,15 +20,15 @@ export const useUserAddress = () => {
 
 export const UserAddressProvider = ({ children }: ChildrenType) => {
   const [userAddress, setUserAddress] = useState<AddressType|null>(()=>{
-    const storedAddress=localStorage.getItem("userAddress");
+    const storedAddress=localStorage.getItem("userAddressF");
     return storedAddress ? JSON.parse(storedAddress) : null;
   });
 
   useEffect(()=>{
     if(userAddress){
-      localStorage.setItem("userAddress",JSON.stringify(userAddress));
+      localStorage.setItem("userAddressF",JSON.stringify(userAddress));
     } else {
-      localStorage.removeItem("userAddress");
+      localStorage.removeItem("userAddressF");
     }
   },[userAddress])
 
