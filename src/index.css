@@ -5,6 +5,9 @@
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
+body{
+  background-color: #f0f0f0;
+}
 
 @keyframes scroll {
   0% {
@@ -43,4 +46,17 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
 }
 .validation-wrong{
   @apply  text-red-400 transform translate-y-4
+}
+.image-gallery-image{
+  @apply md:rounded-lg
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

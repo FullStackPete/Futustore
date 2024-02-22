@@ -4,7 +4,7 @@ function QuantityInput({decreaseNumber,inputValue,increaseNumber,id,onChange, cu
 
     return (  <><button
         onClick={decreaseNumber}
-        className="px-2"
+        className="px-2 md:text-lg"
       >
         -
       </button>
@@ -12,12 +12,12 @@ function QuantityInput({decreaseNumber,inputValue,increaseNumber,id,onChange, cu
       
       type="number"
         id={id}
-        className={` border-black h-6 w-8 border-x text-center ` + customClass}
+        className={`border-black h-6 w-8 border-x text-center md:text-lg ` + customClass}
         value={inputValue}
         onChange={onChange}
       />
       <button
-        className="px-2"
+        className="px-2 md:text-lg"
         onClick={increaseNumber}
       >
         +

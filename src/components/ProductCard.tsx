@@ -82,7 +82,10 @@ function ProductCard() {
   if (loading) return <Loader />;
   return (
     <>
-      <div className="mt-20">
+    <div className="md:flex md:justify-center">
+      <div className="mt-20 md:mt-28 bg-white md:flex md:justify-center md:w-[1080px] md:rounded-2xl md:p-8">
+        <div className="md:flex md:flex-col">
+          <div className="md:flex md:flex-row md:justify-center md:items-center ">
         {imagesArray && (
           <ImageGallery
             items={imagesArray}
@@ -91,13 +94,14 @@ function ProductCard() {
             autoPlay={false}
           />
         )}
-        <div className="text-2xl m-2 font-medium">{product?.title}</div>
-        <div className="flex flex-row justify-between border-y-2 bg-slate-200">
-          <div className="flex flex-col items-center text-2xl m-4">
+        <div className="md:flex-col">
+        <div className="text-2xl md:text-4xl m-2 font-medium text-center">{product?.title}</div>
+        <div className="flex flex-row justify-between border-y-2 bg-slate-200 rounded-r-md">
+          <div className="flex flex-col items-center text-2xl md:text-4xl m-4">
             {product?.price}$,-
-            <div className="text-gray-400 text-sm">vat included</div>
+            <div className="text-gray-400 text-sm md:text-lg">vat included</div>
           </div>
-          <div id="cart" className="flex items-center">
+          <div id="cart" className="flex items-center md:text-lg">
             Add to cart
             <div className="flex flex-row border border-black rounded-md ml-2 bg-white">
               <QuantityInput
@@ -122,11 +126,15 @@ function ProductCard() {
               />
             </button>
           </div>
+          </div>
+        </div>
         </div>
         <div id="description" className="m-4 text-justify flex-col">
-          <p className="text-2xl font-semibold my-4">Description</p>
-          {product?.description}
+          <p className="text-2xl md:text-4xl font-semibold my-4">Description</p>
+          <p className="md:text-2xl">{product?.description}</p>
         </div>
+        </div>
+      </div>
       </div>
     </>
   );

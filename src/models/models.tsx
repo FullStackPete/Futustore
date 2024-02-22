@@ -17,7 +17,7 @@ export type cartItemType = {
 export type CardProps = {
   products: apiData;
   prodId: number;
-  cardColors: { background: string; topColor: string; bottomColor: string };
+  cardColors: { background?: string; topColor: string; bottomColor: string };
   text: { topText: string | undefined; bottomText: string | undefined };
 };
 

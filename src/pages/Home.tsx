@@ -17,7 +17,7 @@ function Home() {
       {error && (
         <p className="mt-28 text-2xl text-red-400">Error occured: {error}</p>
       )}
-      <ul className="flex flex-col mt-16">
+      <ul className="flex flex-col mt-16 md:mt-28 lg:mt-28 lg:items-center lg:justify-center">
         <Card
           text={{
             topText: "Stay in contact",
@@ -25,11 +25,10 @@ function Home() {
               "Don't get disconnected. Buy our newest smartwatch - AyeWatch 45",
           }}
           cardColors={{
-            background: "#E5E3E0",
             topColor: "#EBCCCF",
             bottomColor: "#5BB0CF",
           }}
-          prodId={23}
+          prodId={27}
           products={data}
         />
         <Card
@@ -38,11 +37,10 @@ function Home() {
             bottomText: "Experience the world again with AyeBeats",
           }}
           cardColors={{
-            background: "#E5E3E0",
             topColor: "#B6C9C0",
             bottomColor: "#0D0A09",
           }}
-          prodId={20}
+          prodId={19}
           products={data}
         />
         <Card
@@ -51,11 +49,10 @@ function Home() {
             bottomText: "Try our new notebook - AyeBook 16'",
           }}
           cardColors={{
-            background: "#E5E3E0",
             topColor: "#FCC940",
             bottomColor: "#0D0A09",
           }}
-          prodId={22}
+          prodId={24}
           products={data}
         />
       </ul>
