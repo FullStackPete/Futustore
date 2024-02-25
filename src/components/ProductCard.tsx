@@ -83,11 +83,13 @@ function ProductCard() {
   return (
     <>
     <div className="md:flex md:justify-center">
-      <div className="mt-20 md:mt-28 bg-white md:flex md:justify-center md:w-[1080px] md:rounded-2xl md:p-8">
+      <div className="mt-20 md:mt-28 bg-white md:flex md:justify-center md:w-4/5 lg:w-3/5 md:rounded-2xl md:p-6">
         <div className="md:flex md:flex-col">
           <div className="md:flex md:flex-row md:justify-center md:items-center ">
         {imagesArray && (
+          
           <ImageGallery
+            showNav={false}
             items={imagesArray}
             showFullscreenButton={false}
             showPlayButton={false}
@@ -95,15 +97,14 @@ function ProductCard() {
           />
         )}
         <div className="md:flex-col">
-        <div className="text-2xl md:text-4xl m-2 font-medium text-center">{product?.title}</div>
+        <div className="text-2xl m-2 font-medium text-center">{product?.title}</div>
         <div className="flex flex-row justify-between border-y-2 bg-slate-200 rounded-r-md">
-          <div className="flex flex-col items-center text-2xl md:text-4xl m-4">
+          <div className="flex flex-col text-lg m-4 md:m-2 text-center">
             {product?.price}$,-
-            <div className="text-gray-400 text-sm md:text-lg">vat included</div>
+            <div className="text-gray-400 text-sm">vat included</div>
           </div>
-          <div id="cart" className="flex items-center md:text-lg">
-            Add to cart
-            <div className="flex flex-row border border-black rounded-md ml-2 bg-white">
+          <div id="cart" className="flex items-center">
+            <p className="md:hidden">Add to cart</p>
               <QuantityInput
                 decreaseNumber={() => {
                   if (itemCounter > 1) {
@@ -114,8 +115,7 @@ function ProductCard() {
                 increaseNumber={() => {
                   if (itemCounter < 10) setItemCounter((prev) => prev + 1);
                 }}
-              />
-            </div>
+              />            
             <button
               className="border border-black rounded-md p-2 m-2 bg-white"
               onClick={() => addToCart(product!.id)}
@@ -130,8 +130,8 @@ function ProductCard() {
         </div>
         </div>
         <div id="description" className="m-4 text-justify flex-col">
-          <p className="text-2xl md:text-4xl font-semibold my-4">Description</p>
-          <p className="md:text-2xl">{product?.description}</p>
+          <p className="text-2xl font-semibold my-4">Description</p>
+          <p className="md:text-lg">{product?.description}</p>
         </div>
         </div>
       </div>

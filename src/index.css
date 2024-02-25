@@ -49,6 +49,7 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
 }
 .image-gallery-image{
   @apply md:rounded-lg
+  
 }
 
 input::-webkit-outer-spin-button,

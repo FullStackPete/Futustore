@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 function AllProductsCard({ item }: { item: productsType }) {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex md:text-base text-center flex-col">
         <Link to={`/product/${item.id}`}>
-        <img src={item.images[0]} alt={item.title} />
-        <p className="text-sm font-medium">{item.title}</p>
-        <p className="text-gray-400 font-base">{item.price}$,-</p>
+        <img className="rounded-sm" src={item.images[0]} alt={item.title} />
+        <p className=" font-medium">{item.title}</p>
+        <p className="text-gray-400">{item.price}$,-</p>
         </Link>
       </div>
     </>

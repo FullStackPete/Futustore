@@ -9,8 +9,8 @@ type ItemsInCart = {
   hasInput: boolean;
   hasDeleteButton: boolean;
   hasFinalPrice: boolean;
-  imageClass:string;
-  itemsHaveBorder:boolean;
+  imageClass: string;
+  itemsHaveBorder: boolean;
 };
 function ItemsInCart({
   hasInput,
@@ -63,13 +63,18 @@ function ItemsInCart({
     <>
       {(cart as cartItemType[]).map((item, index) => {
         return (
-          <li key={index} className={`${itemsHaveBorder ? "border-y" : ""} flex flex-row my-2`}>
+          <li
+            key={index}
+            className={`${
+              itemsHaveBorder ? "border-y" : ""
+            } flex flex-row my-2`}
+          >
             <img
               src={item.product?.images[0]}
               className={`m-2 ${imageClass}`}
               alt={item.product?.title}
             />
-            <div className="flex flex-row justify-between items-center w-screen">              
+            <div className="flex flex-row justify-between items-center w-screen">
               {/* flex row w screen */}
               <div className="flex flex-col">
                 <p className="font-medium">{item.product?.title}</p>
@@ -82,9 +87,9 @@ function ItemsInCart({
                   {item.quantity * item.product!.price}$,-
                 </p>
               )}
-              {hasInput && (
-                <div className="flex flex-col">
-                  <div className="flex flex-row  border border-black rounded-md m-2">
+              <div className="flex flex-row items-center">
+                {hasInput && (
+                  <div className="flex flex-col">
                     <QuantityInput
                       onChange={() => updateQuantity(item.product?.id || 0)}
                       id={`quantityInput` + item.product?.id || "0"}
@@ -96,21 +101,21 @@ function ItemsInCart({
                         updateQuantity(item.product?.id || 0, "increase");
                       }}
                     />
+                    <div
+                      id={`errorTxt` + item.product?.id}
+                      className=" text-red-500 font-semibold text-center"
+                    ></div>
                   </div>
-                  <div
-                    id={`errorTxt` + item.product?.id}
-                    className=" text-red-500 font-semibold text-center"
-                  ></div>
-                </div>
-              )}
-              {hasDeleteButton && (
-                <button
-                  className="flex"
-                  onClick={() => deleteItemFromCart(item.product?.id || 0)}
-                >
-                  <Icon className="text-red-500" name="delete"></Icon>
-                </button>
-              )}
+                )}
+                {hasDeleteButton && (
+                  <button
+                    className="flex"
+                    onClick={() => deleteItemFromCart(item.product?.id || 0)}
+                  >
+                    <Icon className="text-red-500" name="delete"></Icon>
+                  </button>
+                )}
+              </div>
             </div>
           </li>
         );

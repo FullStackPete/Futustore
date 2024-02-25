@@ -17,7 +17,7 @@ function Home() {
       {error && (
         <p className="mt-28 text-2xl text-red-400">Error occured: {error}</p>
       )}
-      <ul className="flex flex-col mt-16 md:mt-28 lg:mt-28 lg:items-center lg:justify-center">
+      <ul className="flex flex-col mt-16 md:mt-28 lg:mt-28 md:items-center md:justify-center lg:items-center lg:justify-center">
         <Card
           text={{
             topText: "Stay in contact",

@@ -10,7 +10,7 @@ function ContinueButton({
       onClick={onClick}
       type={type}
       className={
-        `flex mx-4 px-4 py-2 border bg-[#B6C9C0] rounded-md font-medium ` +
+        `flex mx-4 mb-4 px-4 py-2 border bg-[#B6C9C0] rounded-md font-medium ` +
         className
       }
     >
