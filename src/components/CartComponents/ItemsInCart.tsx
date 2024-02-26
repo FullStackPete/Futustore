@@ -87,35 +87,37 @@ function ItemsInCart({
                   {item.quantity * item.product!.price}$,-
                 </p>
               )}
-              <div className="flex flex-row items-center">
-                {hasInput && (
-                  <div className="flex flex-col">
-                    <QuantityInput
-                      onChange={() => updateQuantity(item.product?.id || 0)}
-                      id={`quantityInput` + item.product?.id || "0"}
-                      decreaseNumber={() => {
-                        updateQuantity(item.product?.id || 0, "decrease");
-                      }}
-                      inputValue={item.quantity}
-                      increaseNumber={() => {
-                        updateQuantity(item.product?.id || 0, "increase");
-                      }}
-                    />
-                    <div
-                      id={`errorTxt` + item.product?.id}
-                      className=" text-red-500 font-semibold text-center"
-                    ></div>
-                  </div>
-                )}
-                {hasDeleteButton && (
-                  <button
-                    className="flex"
-                    onClick={() => deleteItemFromCart(item.product?.id || 0)}
-                  >
-                    <Icon className="text-red-500" name="delete"></Icon>
-                  </button>
-                )}
-              </div>
+              {hasInput && hasDeleteButton && (
+                <div className="flex flex-row items-center">
+                  {hasInput && (
+                    <div className="flex flex-col">
+                      <QuantityInput
+                        onChange={() => updateQuantity(item.product?.id || 0)}
+                        id={`quantityInput` + item.product?.id || "0"}
+                        decreaseNumber={() => {
+                          updateQuantity(item.product?.id || 0, "decrease");
+                        }}
+                        inputValue={item.quantity}
+                        increaseNumber={() => {
+                          updateQuantity(item.product?.id || 0, "increase");
+                        }}
+                      />
+                      <div
+                        id={`errorTxt` + item.product?.id}
+                        className=" text-red-500 font-semibold text-center"
+                      ></div>
+                    </div>
+                  )}
+                  {hasDeleteButton && (
+                    <button
+                      className="flex"
+                      onClick={() => deleteItemFromCart(item.product?.id || 0)}
+                    >
+                      <Icon className="text-red-500" name="delete"></Icon>
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </li>
         );

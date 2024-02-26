@@ -65,33 +65,35 @@ function AddressPage() {
   };
 
   return (
-    <>
-      <CartHeader text="Enter your address" />
-      <form
-        onSubmit={(e) => btnSubmit(e)}
-        className="flex flex-col justify-center items-center my-2 "
-      >
-        {addressInputsModel.map((input, index) => (
-          <AddressInput
-            key={index}
-            type={input.type}
-            inputName={input.name}
-            placeholder={input.placeholder}
-            inputType={input.inputType}
-            minLength={input.minLength}
-            maxLength={input.maxLength}
-            onChange={handleValueChange}
-            setInputValidated={(isValid) =>
-              setValidateInputs((prev) => ({
-                ...prev,
-                [input.name as keyof typeof prev]: isValid,
-              }))
-            }
-          />
-        ))}
-        <ContinueButton className=" " type="submit" text="Submit" />
-      </form>
-    </>
+    <div className="mt-28 md:flex md:flex-col md:justify-center md:items-center">
+        <CartHeader text="Enter your address" />
+      <div className="md:w-4/5 lg:w-3/5">
+        <form
+          onSubmit={(e) => btnSubmit(e)}
+          className="flex flex-col justify-center items-center md:bg-white md:rounded-md md:mb-4 md:p-4"
+        >
+          {addressInputsModel.map((input, index) => (
+            <AddressInput
+              key={index}
+              type={input.type}
+              inputName={input.name}
+              placeholder={input.placeholder}
+              inputType={input.inputType}
+              minLength={input.minLength}
+              maxLength={input.maxLength}
+              onChange={handleValueChange}
+              setInputValidated={(isValid) =>
+                setValidateInputs((prev) => ({
+                  ...prev,
+                  [input.name as keyof typeof prev]: isValid,
+                }))
+              }
+            />
+          ))}
+          <ContinueButton className=" " type="submit" text="Submit" />
+        </form>
+      </div>
+    </div>
   );
 }
 
