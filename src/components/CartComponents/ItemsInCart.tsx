@@ -19,6 +19,7 @@ function ItemsInCart({
   imageClass,
   itemsHaveBorder,
 }: ItemsInCart) {
+  
   const [cart, setCart] = useContext<CartContextValue | undefined>(
     ShoppingCartContext
   )!;
@@ -34,7 +35,7 @@ function ItemsInCart({
       quantityInput.valueAsNumber += 1;
     } else if (action === "decrease") {
       if (quantityInput.valueAsNumber === 1)
-        return (errorOutput!.innerHTML = "Number can't be below 1!");
+        return ;
       quantityInput.valueAsNumber -= 1;
     }
 
@@ -90,9 +91,8 @@ function ItemsInCart({
               {hasInput && hasDeleteButton && (
                 <div className="flex flex-row items-center">
                   {hasInput && (
-                    <div className="flex flex-col">
-                      <QuantityInput
-                        onChange={() => updateQuantity(item.product?.id || 0)}
+                    <div className="relative md:mr-8">
+                      <QuantityInput                        
                         id={`quantityInput` + item.product?.id || "0"}
                         decreaseNumber={() => {
                           updateQuantity(item.product?.id || 0, "decrease");
@@ -102,10 +102,10 @@ function ItemsInCart({
                           updateQuantity(item.product?.id || 0, "increase");
                         }}
                       />
-                      <div
+                      <span
                         id={`errorTxt` + item.product?.id}
-                        className=" text-red-500 font-semibold text-center"
-                      ></div>
+                        className="absolute -left-4 top-10 text-red-500 font-semibold text-center w-max"
+                      ></span>
                     </div>
                   )}
                   {hasDeleteButton && (

@@ -36,8 +36,7 @@ export type quantityInputTypes = {
   increaseNumber: () => void;
   inputValue: number;
   id?: string;
-  customClass?: string;
-  onChange?: () => void;
+  customClass?: string;  
 };
 
 export type AddressInputProps = {

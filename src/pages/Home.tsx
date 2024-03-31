@@ -40,7 +40,7 @@ function Home() {
             topColor: "#B6C9C0",
             bottomColor: "#0D0A09",
           }}
-          prodId={19}
+          prodId={25}
           products={data}
         />
         <Card

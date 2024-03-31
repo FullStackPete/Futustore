@@ -13,13 +13,15 @@ function Summary() {
   return (
     <>
       <div className="mt-28">
+        <div className="md:flex md:items-center md:justify-center">
+        <div className="md:mb-4 md:w-4/5 lg:w-3/5 md:bg-white md:p-4 md:rounded-md">
         <CartHeader text="Review your order" />
-        <div className="m-4">
+        <div className="md:m-0 m-4">
           <div className="flex flex-row justify-between">
             <p className="text-xl font-medium">Address</p>
             <Link to={"/cart/address"} className="text-blue-400 underline">Edit</Link>
           </div>
-          <CartSection customClass="flex-col">
+          <CartSection customClass="flex-col ">
             <p>{userAddress!.Name}</p>
             <p>{userAddress!.Address}</p>
             <p>
@@ -39,6 +41,8 @@ function Summary() {
             />
           </CartSection>
           <PriceSummary handleBtnClick={handleOrder} btnText="Order"/>
+          </div>
+          </div>
         </div>
       </div>
     </>

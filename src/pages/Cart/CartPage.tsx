@@ -21,6 +21,7 @@ function Cart() {
     <>
       <div className="flex flex-col mt-28">
       <div className="md:flex md:flex-col md:justify-center md:items-center md:mb-4">        
+      <div className="md:w-4/5 lg:w-3/5 md:bg-white md:p-4 md:rounded-md">
           {cart.length > 0 ? (
             <CartHeader text="Your cart"/>
           ) : (
@@ -34,7 +35,7 @@ function Cart() {
           )}        
         
           {cart.length > 0 && (
-            <ul className="md:w-4/5 lg:w-3/5 md:bg-white flex flex-col mx-4 md:p-4 md:rounded-md">
+            <ul className="flex flex-col mx-4 md:mx-0">
               <ItemsInCart
                 itemsHaveBorder={true}
                 imageClass="w-20"
@@ -45,6 +46,7 @@ function Cart() {
               <PriceSummary handleBtnClick={navigateAddress} btnText="Continue" />
             </ul>
           )}
+          </div>
         </div>
         
 

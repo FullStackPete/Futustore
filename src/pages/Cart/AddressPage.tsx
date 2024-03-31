@@ -66,8 +66,8 @@ function AddressPage() {
 
   return (
     <div className="mt-28 md:flex md:flex-col md:justify-center md:items-center">
-        <CartHeader text="Enter your address" />
       <div className="md:w-4/5 lg:w-3/5">
+        <CartHeader text="Enter your address" />
         <form
           onSubmit={(e) => btnSubmit(e)}
           className="flex flex-col justify-center items-center md:bg-white md:rounded-md md:mb-4 md:p-4"
