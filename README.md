@@ -10,9 +10,9 @@ Futustore is an application that allows users to browse electronic products from
 
 ## Technologies
 
-- [React](https://reactjs.org/)(https://img.shields.io/badge/React-17.0.2-blue)](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)(https://img.shields.io/badge/TypeScript-4.5.2-blue)](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)(https://img.shields.io/badge/Tailwind_CSS-2.2.19-blue)](https://tailwindcss.com/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Installation
 
