@@ -1,12 +1,18 @@
 // UserAddressContext.js
 
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { ChildrenType, AddressType } from "../models/models";
 import { UserAddressContext } from "./Contexts";
 
 export type AddressContextValue = [
-  AddressType|null,
-  Dispatch<SetStateAction<AddressType|null>>
+  AddressType | null,
+  Dispatch<SetStateAction<AddressType | null>>
 ];
 
 export const useUserAddress = () => {
@@ -19,22 +25,18 @@ export const useUserAddress = () => {
 };
 
 export const UserAddressProvider = ({ children }: ChildrenType) => {
-  const [userAddress, setUserAddress] = useState<AddressType|null>(()=>{
-    const storedAddress=localStorage.getItem("userAddressF");
+  const [userAddress, setUserAddress] = useState<AddressType | null>(() => {
+    const storedAddress = localStorage.getItem("userAddressF");
     return storedAddress ? JSON.parse(storedAddress) : null;
   });
 
-  useEffect(()=>{
-    if(userAddress){
-      localStorage.setItem("userAddressF",JSON.stringify(userAddress));
+  useEffect(() => {
+    if (userAddress) {
+      localStorage.setItem("userAddressF", JSON.stringify(userAddress));
     } else {
       localStorage.removeItem("userAddressF");
     }
-  },[userAddress])
-
-  const addUserAddress = (newAddress: AddressType) => {
-    setUserAddress(newAddress);
-  };
+  }, [userAddress]);
 
   const value: AddressContextValue = [userAddress, setUserAddress];
   return (

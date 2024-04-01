@@ -22,16 +22,19 @@ function App() {
         <CartProvider>
           <Navbar>
             <Routes>
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/home" element={<Home />} />
+              <Route
+                path="/Futustore"
+                element={<Navigate to="/Futustore/home" />}
+              />
+              <Route path="/Futustore/home" element={<Home />} />
 
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/cart/address" element={<AddressPage />} />
-              <Route path="/cart/summary" element={<Summary />} />
+              <Route path="/Futustore/cart" element={<Cart />} />
+              <Route path="/Futustore/cart/address" element={<AddressPage />} />
+              <Route path="/Futustore/cart/summary" element={<Summary />} />
 
-              <Route path="/allproducts" element={<AllProducts />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path={"/product/:id"} element={<Product />} />
+              <Route path="/Futustore/allproducts" element={<AllProducts />} />
+              <Route path="/Futustore/contact" element={<Contact />} />
+              <Route path={"/Futustore/product/:id"} element={<Product />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Navbar>

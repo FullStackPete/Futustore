@@ -58,7 +58,7 @@ function AddressPage() {
       };
       addUserAddress(newAddress);
       console.log("New Address:", newAddress);
-      navigate("/cart/summary");
+      navigate("/Futustore/cart/summary");
     } else {
       console.log("Niepoprawne dane w formularzu. ", validateInputs);
     }

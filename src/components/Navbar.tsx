@@ -21,19 +21,19 @@ function Navbar({ children }: ChildrenType) {
         <div className="md:flex md:justify-center md:items-center">
         <div className="flex flex-row justify-between items-center md:w-4/5 lg:w-3/5 ml-4">
           <div className="text-[#31393C] bg-[#FDCA40] p-1 rounded-md ">
-            <Link to="/home" className="flex flex-row">
+            <Link to="/Futustore/home" className="flex flex-row">
               <Icon className="text-3xl" name="Token"></Icon>
               <p className="ml-2 font-semibold">Futustore</p>
             </Link>
           </div>
           <ul className="flex flex-row">
             <li className="m-4">
-              <Link to="/allproducts">
+              <Link to="/Futustore/allproducts">
                 <Icon className="text-3xl" name="apps" />
               </Link>
             </li>
             <li className="m-4">
-              <Link to="/cart">
+              <Link to="/Futustore/cart">
                 <Icon className="text-3xl" name="shopping_cart" />
 
                 {cart.length > 0 && (

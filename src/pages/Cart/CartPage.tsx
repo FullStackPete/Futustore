@@ -13,7 +13,7 @@ function Cart() {
 
   let finalPrice: number = 0;
 
-  const navigateAddress = () => navigate("/cart/address");
+  const navigateAddress = () => navigate("/Futustore/cart/address");
 
   cart.map((item) => (finalPrice += item.product!.price * item.quantity));
   console.log(finalPrice);
@@ -27,7 +27,7 @@ function Cart() {
           ) : (
             <>
               <div className="md:text-center">Your cart is empty!<br/>
-              <Link className="underline text-gray-500 text-xl" to="/home">
+              <Link className="underline text-gray-500 text-xl" to="/Futustore/home">
                 Shop now!
               </Link>
               </div>
